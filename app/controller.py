@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import logging
 import webbrowser
 
@@ -26,9 +28,13 @@ class Controller:
             app.start(video_in, options)
 
         if event == '-TRIM_CHECK-':
-            disabled = not values['-TRIM_CHECK-']
-            window['-START_IN-'].update(disabled=disabled)
-            window['-LEN_IN-'].update(disabled=disabled)
+            if not values['-TRIM_CHECK-']:
+                value = '00:00:00'
+                window['-START_IN-'].update(value=value, disabled=True)
+                window['-LEN_IN-'].update(value=value, disabled=True)
+            else:
+                window['-START_IN-'].update(disabled=False)
+                window['-LEN_IN-'].update(disabled=False)
 
         if event == '-SPEED_SLIDER-':
             window['-SPEED_TEXT-'].update(
