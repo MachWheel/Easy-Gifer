@@ -6,3 +6,5 @@
 *.log
 /.idea/
 /test/
+/app/__pycache__/
+/resources/__pycache__/
