@@ -1,45 +1,45 @@
 # coding=utf-8
 
-import logging
 import webbrowser
+from os.path import isfile
 
 from PySimpleGUI import read_all_windows, WIN_CLOSED
 
 from app.elements import INFO_POPUP
+from app.gifer import Gifer
 from resources.names import DONATE_LINK
 
 
 class Controller:
-    def __init__(self):
-        self.log = logging.getLogger(__name__)
+    def __init__(self, window):
+        self.view = window
 
     @staticmethod
-    def read_events(app):
+    def read_events():
         window, event, values = read_all_windows()
 
         if event == "-START_BTN-":
             video_in = values["-VIDEO_IN-"]
-            if not video_in:
+            if not video_in or not isfile(video_in):
                 return
-            start = values['-START_IN-']
-            duration = values['-LEN_IN-']
-            speed = values['-SPEED_SLIDER-']
-            options = (start, duration, speed)
-            app.start(video_in, options)
+            work = Gifer(inputs=values)
+            work.start()
+            return 'done'
 
         if event == '-TRIM_CHECK-':
+            start_at = window['-START_IN-']
+            duration = window['-LEN_IN-']
             if not values['-TRIM_CHECK-']:
                 value = '00:00:00'
-                window['-START_IN-'].update(value=value, disabled=True)
-                window['-LEN_IN-'].update(value=value, disabled=True)
+                start_at.update(value=value, disabled=True)
+                duration.update(value=value, disabled=True)
             else:
-                window['-START_IN-'].update(disabled=False)
-                window['-LEN_IN-'].update(disabled=False)
+                start_at.update(disabled=False)
+                duration.update(disabled=False)
 
         if event == '-SPEED_SLIDER-':
-            window['-SPEED_TEXT-'].update(
-                f"{values['-SPEED_SLIDER-']}x"
-            )
+            speed_set = window['-SPEED_TEXT-']
+            speed_set.update(f"{values['-SPEED_SLIDER-']}x")
 
         if event == "-INFO_BTN-":
             window.hide()

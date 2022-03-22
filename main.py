@@ -1,23 +1,14 @@
 # coding=utf-8
-import logging.config
 
-from PySimpleGUI import Window
-
-from app.application import Application
+from app.controller import Controller
 from app.elements import MAIN_WINDOW
-from resources.messages import DRAWN, STARTED, INITIALIZING
 
 
-def main(app: Application, view: Window):
-    log = logging.getLogger(__name__)
-    log.debug(STARTED)
+def main(app: Controller):
     while True:
-        log.debug(DRAWN(view))
-        running_status = app.running()
-        if running_status == 'done':
+        status = app.read_events()
+        if status == 'done':
             break
 
 if __name__ == "__main__":
-    logging.config.fileConfig("resources/configs/log_config.ini")
-    logging.debug(INITIALIZING)
-    main(Application(), MAIN_WINDOW())
+    main(Controller(MAIN_WINDOW()))
