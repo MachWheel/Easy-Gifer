@@ -5,9 +5,9 @@ from os.path import isfile
 
 from PySimpleGUI import read_all_windows, WIN_CLOSED
 
-from app.elements import INFO_POPUP
+from app.views import INFO_POPUP
 from app.gifer import Gifer
-from resources.names import DONATE_LINK
+from resources.labels import DONATE_LINK
 
 
 class Controller:

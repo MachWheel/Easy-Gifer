@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from app.controller import Controller
-from app.elements import MAIN_WINDOW
+from app.views import MAIN_WINDOW
 
 
 def main(app: Controller):

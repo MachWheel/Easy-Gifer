@@ -3,7 +3,7 @@ from os.path import splitext, realpath
 
 import ffmpeg
 
-from app.elements import DONE_POPUP
+from app.views import DONE_POPUP
 
 
 class Gifer:
