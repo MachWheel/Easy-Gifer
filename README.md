@@ -15,7 +15,6 @@ Simple as that.
 
 # Supported video extensions
 
-## Videos
     .3g2, .3gp, .avi, .flv, .h264, .m4v, .mkv, .mov, .mp4, .mpg, .mpeg, .rm, .swf, .vob, .wmv, .srt, and many more...
 
 *And probably many other*
