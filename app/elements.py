@@ -1,4 +1,3 @@
-# coding=utf-8
 import PySimpleGUI as sg
 
 from resources import icons

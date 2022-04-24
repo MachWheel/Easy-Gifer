@@ -1,50 +1,39 @@
 from os import startfile
-from os.path import splitext, realpath
+from os.path import realpath
 
 import ffmpeg
 
+from app.options import Options
 from app.views import DONE_POPUP
 
 
 class Gifer:
-    def __init__(self, inputs):
-        self.video_in = inputs["-VIDEO_IN-"]
-        self.start_at = inputs["-START_IN-"]
-        self.duration = inputs["-LEN_IN-"]
-        self.speed = inputs["-SPEED_SLIDER-"]
-        self.gif_out = f"{splitext(self.video_in)[0]}.gif"
-        self.stream = None
+    @staticmethod
+    def start(options: Options):
+        stream = ffmpeg.input(options.input_file)
+        if options.duration != '00:00:00':
+            trim_args = options.start_at, options.duration
+            stream = Gifer._trim(trim_args, stream)
+        stream = Gifer._set_speed(options.gif_speed, stream)
+        Gifer._make_file(options.output_file, stream)
+        Gifer._open_file(options.output_file)
 
-    def start(self):
-        self.stream = ffmpeg.input(self.video_in)
-        self.trim()
-        self.set_speed()
-        self.make()
-        self.terminate()
+    @staticmethod
+    def _trim(options, stream):
+        return stream.trim(start=options[0], duration=options[1])
 
-    def trim(self):
-        if self.duration == '00:00:00':
-            return
-        self.process(
-            self.stream.trim(start=self.start_at, duration=self.duration)
-        )
+    @staticmethod
+    def _set_speed(gif_speed, stream):
+        speed = 0.25 / gif_speed
+        return stream.filter('setpts', f'(PTS-STARTPTS)*{speed}')
 
-    def process(self, stream):
-        self.stream = stream
+    @staticmethod
+    def _make_file(output_file, stream):
+        stream = ffmpeg.output(stream, output_file)
+        ffmpeg.run(stream, overwrite_output=True)
 
-    def set_speed(self):
-        speed = 0.25 / self.speed
-        self.process(
-            self.stream.filter('setpts', f'(PTS-STARTPTS)*{speed}')
-        )
-
-    def make(self):
-        self.process(
-            ffmpeg.output(self.stream, self.gif_out)
-        )
-        ffmpeg.run(self.stream, overwrite_output=True)
-
-    def terminate(self):
+    @staticmethod
+    def _open_file(output_file):
         if DONE_POPUP():
-            startfile(realpath(self.gif_out))
+            startfile(realpath(output_file))
             return

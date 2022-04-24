@@ -1,5 +1,3 @@
-# coding=utf-8
-
 from app.controller import Controller
 from app.views import MAIN_WINDOW
 
