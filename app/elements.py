@@ -63,7 +63,7 @@ _TRIM_START = (
 
 _TRIM_LEN = (
     sg.Push(),
-    sg.T(DURATION, font='Default 11 bold'),
+    sg.T(DURATION, font='Default 11 bold', text_color='#ff009b'),
     sg.Input(
         k='-LEN_IN-',
         size=(8, 4),
