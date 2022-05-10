@@ -45,4 +45,4 @@ def PROGRESS_POPUP(bar_end=100):
             bar_color='#ff009b'
         )]
     ]
-    return sg.Window('Exporting GIF file...', layout)
+    return sg.Window('Exporting GIF file...', layout, keep_on_top=True)
