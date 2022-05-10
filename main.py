@@ -1,5 +1,5 @@
-from app.controller import Controller
-from app.views import MAIN_WINDOW
+from controller import Controller
+from views import MAIN_WINDOW
 
 
 def main(app: Controller):

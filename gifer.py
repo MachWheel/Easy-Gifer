@@ -2,8 +2,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 import ffmpeg
 
-from app.options import Options
-from app.task_progress import TASK_PROGRESS
+from controller.options import Options
+from controller.task_progress import TASK_PROGRESS
 
 
 class Gifer:

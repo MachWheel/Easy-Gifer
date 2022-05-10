@@ -1,52 +1,48 @@
 import PySimpleGUI as sg
 
-from resources import icons
-from resources.labels import *
-from resources.labels import APP_THEME
+from . import _icons
+from ._labels import (
+    APP_THEME, START_TOOLTIP, BROWSE_TOOLTIP,
+    SELECT_VIDEO, TRIM, START_AT, DURATION,
+    SPEED_DISPLAY, CHANGE_SPEED
+)
 
 sg.theme(APP_THEME)
 
 _BTN_COLOR = sg.theme_background_color(), sg.theme_background_color()
-
 _MSG_FONT = "Default 14"
-
 _MAIN_TEXT = sg.Text(
     SELECT_VIDEO,
     font="Default 14 bold",
     p=((10, 10), (20, 10))
 )
-
 _BROWSE_BTN = sg.Button(
     button_type=sg.BUTTON_TYPE_BROWSE_FILE,
-    image_data=icons.FOLDER(),
+    image_data=_icons.FOLDER(),
     button_color=_BTN_COLOR,
     border_width=0,
     target='-VIDEO_IN-',
     tooltip=BROWSE_TOOLTIP
 )
-
 _START_BTN = sg.Button(
     button_type=sg.BUTTON_TYPE_READ_FORM,
-    image_data=icons.START(),
+    image_data=_icons.START(),
     button_color=_BTN_COLOR,
     border_width=0,
     tooltip=START_TOOLTIP,
     key="-START_BTN-"
 )
-
 _INPUT_VIDEO = sg.Input(
     k='-VIDEO_IN-',
     size=(30, 4),
     expand_x=True,
     font=_MSG_FONT
 )
-
 _TRIM_CHECK = sg.Checkbox(
     TRIM, font="Default 11 bold",
     default=False, key='-TRIM_CHECK-',
     enable_events=True
 )
-
 _TRIM_START = (
     sg.Push(),
     sg.Text(START_AT, font='Default 11 bold'),
@@ -60,7 +56,6 @@ _TRIM_START = (
         disabled_readonly_background_color=sg.DEFAULT_BACKGROUND_COLOR
     )
 )
-
 _TRIM_LEN = (
     sg.Push(),
     sg.T(DURATION, font='Default 11 bold', text_color='#ff009b'),
@@ -74,7 +69,6 @@ _TRIM_LEN = (
         disabled_readonly_background_color=sg.DEFAULT_BACKGROUND_COLOR
     )
 )
-
 _TRIM_FRAME = sg.Frame(
     title='',
     layout=[
@@ -84,7 +78,6 @@ _TRIM_FRAME = sg.Frame(
     ],
     pad=(0, 15), relief=sg.RELIEF_RAISED, expand_x=True
 )
-
 _SPEED_SLIDER = (
     sg.T(CHANGE_SPEED, font='Default 11 bold'),
     sg.Slider(
@@ -103,9 +96,8 @@ _SPEED_SLIDER = (
         key='-SPEED_TEXT-'
     )
 )
-
 _INFO_BTN = sg.Button(
-    image_data=icons.INFO(),
+    image_data=_icons.INFO(),
     button_color=_BTN_COLOR,
     border_width=0,
     key="-INFO_BTN-",

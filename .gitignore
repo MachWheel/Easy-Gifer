@@ -5,7 +5,7 @@
 /.git/
 *.log
 /.idea/
-/app/__pycache__/
+/controller/__pycache__/
 /resources/__pycache__/
 /compile/dist/
 /compile/build/

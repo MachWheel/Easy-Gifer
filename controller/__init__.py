@@ -4,10 +4,9 @@ from os.path import realpath
 
 from PySimpleGUI import read_all_windows, WIN_CLOSED
 
-from app.gifer import Gifer
-from app.options import Options
-from app.views import INFO_POPUP, DONE_POPUP
-from resources.labels import DONATE_LINK
+from .options import Options
+from gifer import Gifer
+from views import DONE_POPUP, INFO_POPUP
 
 
 class Controller:
@@ -20,8 +19,8 @@ class Controller:
 
         if event == "-START_BTN-":
             window.hide()
-            options = Options(values)
-            output = Gifer.run(options)
+            selected_options = Options(values)
+            output = Gifer.run(selected_options)
             if DONE_POPUP():
                 startfile(realpath(output))
             window.un_hide()
@@ -49,7 +48,7 @@ class Controller:
     def view_donate(window):
         window.hide()
         if INFO_POPUP() == 'Yes':
-            webbrowser.open(DONATE_LINK, new=0)
+            webbrowser.open(_DONATE_LINK, new=0)
         window.un_hide()
 
     @staticmethod
@@ -63,3 +62,5 @@ class Controller:
         else:
             start_field.update(disabled=False)
             duration_input.update(disabled=False)
+
+_DONATE_LINK = "https://www.paypal.com/donate/?hosted_button_id=RNDCMNV4YWHX4"

@@ -1,7 +1,7 @@
 from concurrent.futures import Future
 from random import choice
 
-from app.views import PROGRESS_POPUP
+from views import PROGRESS_POPUP
 
 
 def TASK_PROGRESS(task: Future[str]):

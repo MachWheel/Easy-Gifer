@@ -1,12 +1,12 @@
 import PySimpleGUI as sg
 
-from app.elements import (
-    _MAIN_TEXT, _BROWSE_BTN, _INPUT_VIDEO,
-    _START_BTN, _TRIM_FRAME, _SPEED_SLIDER,
-    _INFO_BTN, _MSG_FONT
+from views._elements import (
+    _MSG_FONT, _MAIN_TEXT, _BROWSE_BTN,
+    _INPUT_VIDEO, _TRIM_FRAME, _SPEED_SLIDER,
+    _INFO_BTN, _START_BTN
 )
-from resources.labels import APP_TITLE
-from resources.messages import INFO_HELP, DONE
+from views._labels import APP_TITLE
+from views._msgs import DONE, INFO_HELP
 
 
 def MAIN_WINDOW():
@@ -22,6 +22,7 @@ def MAIN_WINDOW():
 
     )
 
+
 def INFO_POPUP():
     return sg.popup_yes_no(INFO_HELP,
                            font=_MSG_FONT,
@@ -32,6 +33,7 @@ def DONE_POPUP():
     return sg.popup_ok(DONE,
                        font=_MSG_FONT,
                        no_titlebar=True)
+
 
 def PROGRESS_POPUP(bar_end=100):
     txt = 'Exporting GIF file...'
