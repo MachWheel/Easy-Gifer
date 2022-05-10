@@ -1,10 +1,12 @@
 import webbrowser
+from os import startfile
+from os.path import realpath
 
 from PySimpleGUI import read_all_windows, WIN_CLOSED
 
-from app.options import Options
-from app.views import INFO_POPUP
 from app.gifer import Gifer
+from app.options import Options
+from app.views import INFO_POPUP, DONE_POPUP
 from resources.labels import DONATE_LINK
 
 
@@ -17,8 +19,12 @@ class Controller:
         window, event, values = read_all_windows()
 
         if event == "-START_BTN-":
+            window.hide()
             options = Options(values)
-            Gifer.start(options)
+            output = Gifer.run(options)
+            if DONE_POPUP():
+                startfile(realpath(output))
+            window.un_hide()
             return
 
         if event == '-TRIM_CHECK-':

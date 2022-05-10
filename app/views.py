@@ -32,3 +32,17 @@ def DONE_POPUP():
     return sg.popup_ok(DONE,
                        font=_MSG_FONT,
                        no_titlebar=True)
+
+def PROGRESS_POPUP(bar_end=100):
+    txt = 'Exporting GIF file...'
+    layout = [
+        [sg.Text(txt, key='-TXT-', font='Default 12 bold')],
+        [sg.ProgressBar(
+            bar_end,
+            orientation='h',
+            size=(50, 20),
+            key='-PROG-',
+            bar_color='#ff009b'
+        )]
+    ]
+    return sg.Window('Exporting GIF file...', layout)
