@@ -1,4 +1,5 @@
 APP_TITLE = 'Easy Gifer'
+APP_THEME = "DarkBlue"
 START_TOOLTIP = "Make a gif"
 BROWSE_TOOLTIP = "Choose a video"
 SELECT_VIDEO = 'Choose any video file to convert into a gif:'
