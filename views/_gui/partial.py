@@ -1,27 +1,26 @@
 import PySimpleGUI as sg
 
-import views._gui.style
-from . import txt, fonts, style
+from . import txt, style
 
 
 def TRIM_TIME_INPUT(mode: str) -> tuple:
     time_input = sg.Input(
         k=f'-{mode.upper()}_IN-',
         size=(3, 4),
-        font=views._gui.style.F_11_B,
+        font=style.F_11_B,
         disabled=True,
         default_text="00",
         justification='center',
         disabled_readonly_background_color=style.BG_COLOR(),
     )
-    input_display = sg.T(f'{mode}', font=views._gui.style.F_9_B)
+    input_display = sg.T(f'{mode}', font=style.F_9_B)
     return time_input, input_display
 
 
 def TRIM_START_AT() -> tuple:
     check = sg.Checkbox(
         text=txt.START_AT,
-        font=views._gui.style.F_11_B,
+        font=style.F_11_B,
         default=False,
         key='-TRIM_CHECK-',
         enable_events=True
@@ -34,7 +33,7 @@ def TRIM_START_AT() -> tuple:
 
 def TRIM_DURATION_SLIDER():
     return (
-        sg.T(txt.DURATION, font=views._gui.style.F_11_B),
+        sg.T(txt.DURATION, font=style.F_11_B),
         sg.Slider(
             range=(1, 59),
             default_value=59,
@@ -46,12 +45,12 @@ def TRIM_DURATION_SLIDER():
             expand_x=True,
             disabled=True
         ),
-        sg.T(txt.DEFAULT_DURATION, key='-DURATION_TXT-', font=views._gui.style.F_11_B),
+        sg.T(txt.DEFAULT_DURATION, key='-DURATION_TXT-', font=style.F_11_B),
     )
 
 
 def SPEED_SLIDER() -> list:
-    display = sg.T(txt.SPEED_DISPLAY, font=views._gui.style.F_11_B, key='-SPEED_TEXT-')
+    display = sg.T(txt.SPEED_DISPLAY, font=style.F_11_B, key='-SPEED_TEXT-')
     slider = sg.Slider(
         range=(0.1, 3),
         default_value=1,
