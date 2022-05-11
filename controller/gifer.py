@@ -1,9 +1,10 @@
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, Future
 
 import ffmpeg
 
-from controller.options_form import OptionsForm
-from controller.task_progress import TASK_PROGRESS
+from views import PROGRESS_POPUP
+from . import _msgs
+from .options_form import OptionsForm
 
 
 class Gifer:
@@ -11,7 +12,7 @@ class Gifer:
     def run(options: OptionsForm) -> str:
         with ThreadPoolExecutor() as e:
             task = e.submit(Gifer._convert, options)
-            TASK_PROGRESS(task)
+            SHOW_TASK_PROGRESS(task)
             output = task.result()
         return output
 
@@ -38,3 +39,17 @@ class Gifer:
     def _make_file(output_file, stream):
         stream = ffmpeg.output(stream, output_file)
         ffmpeg.run(stream, overwrite_output=True, quiet=True)
+
+
+def SHOW_TASK_PROGRESS(task: Future[str]):
+    bar_end, reload_i, i = 100, 99, 0
+    view = PROGRESS_POPUP(bar_end=bar_end)
+    while task.running():
+        view.read(timeout=10)
+        if i == reload_i:
+            i = 0
+            msg = _msgs.SLOW_EXPORTING()
+            view['-TXT-'].update(msg)
+        view['-PROG-'].update(current_count=(i + 1))
+        i += 1
+    view.close()

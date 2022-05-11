@@ -4,10 +4,10 @@ from os.path import realpath
 
 from PySimpleGUI import read_all_windows, WIN_CLOSED
 
-from defaults import DONATE_LINK
-from .options_form import OptionsForm
-from gifer import Gifer
 from views import DONE_POPUP, INFO_POPUP
+from ._config import DONATE_LINK
+from .gifer import Gifer
+from .options_form import OptionsForm
 
 
 class Controller:

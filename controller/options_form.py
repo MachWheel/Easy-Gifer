@@ -3,13 +3,13 @@ from os.path import isfile, splitext
 import PySimpleGUI as sg
 
 from views import ERROR_POPUP
-from ._msgs import (
-    INVALID_FILE, INVALID_TRIM, INVALID_TIME
-)
-from defaults import (
+from ._config import (
     DFT_DURATION, DFT_DURATION_VAL, DFT_DURATION_TXT,
     MAX_DURATION, MAX_DURATION_VAL, MAX_DURATION_TXT,
     DFT_TIME
+)
+from ._msgs import (
+    INVALID_FILE, INVALID_TRIM, INVALID_TIME
 )
 
 

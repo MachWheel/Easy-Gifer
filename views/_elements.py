@@ -1,13 +1,13 @@
 import PySimpleGUI as sg
 
 from . import _icons
-from ._style import (
-    F_14, F_14_B, F_11_B, F_9_B, APP_THEME
-)
 from ._labels import (
     START_TOOLTIP, BROWSE_TOOLTIP,
     SELECT_VIDEO, START_AT, DURATION,
     SPEED_DISPLAY, TRIM, DEFAULT_DURATION
+)
+from ._style import (
+    F_14, F_14_B, F_11_B, F_9_B, APP_THEME
 )
 
 sg.theme(APP_THEME)
