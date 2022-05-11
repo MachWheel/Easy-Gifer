@@ -4,7 +4,7 @@
 :: First make sure to "pip install -r requirements.txt"
 TITLE Easy-Gifer Compiler
 ECHO:
-ECHO Easy_Gifer Compiler v1
+ECHO Easy_Gifer Compiler v2
 ECHO:
 ECHO PRESS ANY KEY TO START COMPILING
 ECHO:

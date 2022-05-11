@@ -33,13 +33,13 @@ def PROGRESS_POPUP(bar_end=100):
 
 
 def INFO_POPUP():
-    return sg.popup_yes_no(txt.INFO, font=style.F_14, no_titlebar=True)
+    return sg.popup_yes_no(txt.INFO, font=style.F_14, no_titlebar=True, keep_on_top=True)
 
 
 def DONE_POPUP():
-    return sg.popup_ok(txt.DONE, font=style.F_14, no_titlebar=True)
+    return sg.popup_ok(txt.DONE, font=style.F_14, no_titlebar=True, keep_on_top=True)
 
 
 def ERROR_POPUP(msg: str):
     msg = f"\n{msg}\n"
-    return sg.popup_error(msg, font=style.F_14)
+    return sg.popup_error(msg, font=style.F_14, keep_on_top=True)
