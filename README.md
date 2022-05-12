@@ -85,4 +85,14 @@ After pyinstaller finishes, copy ffmpeg.exe to the created .\dist folder by typi
 
     ROBOCOPY ".." "dist" ffmpeg.exe /mt /z
     
-The generated .exe file will be in .\compile\dist folder.
+  - **The generated .exe file will be in .\compile\dist folder.**
+
+## requirements.txt
+
+    ffmpeg-python==0.2.0
+    pyinstaller==5.0.1
+    pyinstaller-hooks-contrib==2022.4
+    PySimpleGUI==4.59.0
+    
+  - The included **ffmpeg.exe** file should be in the same folder as **main.py**
+    
