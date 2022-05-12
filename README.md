@@ -1,13 +1,12 @@
 # Easy Gifer
 ### *A simple way to turn a video into a gif, with an easy to use interface.*
-![MAIN_DEMO](https://s1.gifyu.com/images/make-gif-easy-giferb78515673b64288d.gif)
+![MAIN_DEMO](https://s8.gifyu.com/images/easy_gifer_v2.gif)
 
 # How to use it
 ### Just open the app, choose a video file and start it!
 
 # How to install it
 ### Just download the zip file at *Releases*, extract it and run the program. No installation needed.
-![INSTALLATION](https://s1.gifyu.com/images/unzip-easy-gifer.gif)
 
 # How it works
 By implementing ffmpeg-python, ffmpeg and PySimpleGui for the UI. 
