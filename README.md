@@ -11,7 +11,7 @@
   - Done.
 
 # How to install it
-### Just download the zip file at *Releases*, extract it and run the program. No installation needed.
+### Just download the zip at *Releases*, extract and run the .exe file. No installation needed.
 
 # How it works
   - [ffmpeg-python](https://kkroening.github.io/ffmpeg-python/) handles file conversion through [ffmpeg.exe](https://ffmpeg.org/ffmpeg.html)
@@ -56,3 +56,28 @@ Done. Now you can run the app typing:
     py main.py
 
 
+# Compiling the application:
+
+### First: clone the repository and properly configure its virtualenv (see above).
+
+## Easy way:
+
+Inside Easy-Gifer virtualenv, change the directory to compile folder and run the compile script:
+
+    cd compile
+    .\compile.bat
+    
+The generated .exe file will be in .\compile\dist folder (which should be opened after the script finishes).
+    
+## Manual way:
+
+Inside Easy-Gifer virtualenv, change the directory to compile folder and run pyinstaller:
+
+    cd compile
+    pyinstaller -w --onefile ..\main.py --hiddenimport ffmpeg-python --icon app.ico --name Easy-Gifer
+    
+After pyinstaller finishes, copy ffmpeg.exe to the created .\dist folder by typing:
+
+    ROBOCOPY ".." "dist" ffmpeg.exe /mt /z
+    
+The generated .exe file will be in .\compile\dist folder.
