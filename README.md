@@ -1,6 +1,6 @@
 # Easy Gifer
 ### *A simple way to turn a video into a gif, with an easy to use interface.*
-![MAIN_DEMO](https://s8.gifyu.com/images/easy_gifer_v2.gif)
+![MAIN_DEMO](https://s8.gifyu.com/images/easy_gifer_v2dd9a07b500793bec.gif)
 
 # How to use it
 ### Just open the app, choose a video file and start it!
