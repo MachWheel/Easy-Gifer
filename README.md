@@ -11,7 +11,10 @@
   - Done.
 
 # How to install it
-### Just download the zip at *Releases*, extract and run the .exe file. No installation needed.
+Just download the zip at *Releases*, extract and run the .exe file. No installation needed.
+
+# Is it "portable"?
+Mostly. You need to keep the included ffmpeg.exe in the same folder as Easy-Gifer.exe
 
 # How it works
   - [ffmpeg-python](https://kkroening.github.io/ffmpeg-python/) handles file conversion through [ffmpeg.exe](https://ffmpeg.org/ffmpeg.html)
@@ -62,13 +65,15 @@ Done. Now you can run the app typing:
 
 ## Easy way:
 
-Inside Easy-Gifer virtualenv, change the directory to compile folder and run the compile script:
+### Inside Easy-Gifer virtualenv, change the directory to compile and run the script:
 
     cd compile
     .\compile.bat
     
-The generated .exe file will be in .\compile\dist folder (which should be opened after the script finishes).
-    
+![COMPILE](https://s8.gifyu.com/images/compile_easy_gifer_v2.gif)
+
+  - **The generated .exe file will be in .\dist folder (which opens automatically).**
+
 ## Manual way:
 
 Inside Easy-Gifer virtualenv, change the directory to compile folder and run pyinstaller:
