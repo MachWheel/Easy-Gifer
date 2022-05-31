@@ -12,7 +12,7 @@ def MAIN_WINDOW():
             [*_ui.VIDEO_BROWSER()],
             [_ui.TRIM_FRAME()],
             [_ui.SPEED_FRAME(), _ui.INFO()]
-        ], finalize=True
+        ], finalize=True, icon=assets.icons.LOGO()
     )
 
 
@@ -27,7 +27,12 @@ def PROGRESS_POPUP(bar_end=100):
             bar_color='#ff009b'
         )]
     ]
-    return sg.Window(assets.txt.EXPORTING, layout, keep_on_top=True)
+    return sg.Window(
+        title=assets.txt.EXPORTING,
+        layout=layout,
+        keep_on_top=True,
+        icon=assets.icons.LOGO()
+    )
 
 
 def INFO_POPUP():
@@ -35,7 +40,8 @@ def INFO_POPUP():
         assets.txt.INFO,
         font=assets.style.F_14,
         no_titlebar=True,
-        keep_on_top=True
+        keep_on_top=True,
+        icon=assets.icons.LOGO()
     )
 
 
@@ -44,7 +50,9 @@ def DONE_POPUP():
         assets.txt.DONE,
         font=assets.style.F_14,
         no_titlebar=True,
-        keep_on_top=True)
+        keep_on_top=True,
+        icon=assets.icons.LOGO()
+    )
 
 
 def ERROR_POPUP(msg: str):
@@ -52,5 +60,6 @@ def ERROR_POPUP(msg: str):
     return sg.popup_error(
         msg,
         font=assets.style.F_14,
-        keep_on_top=True
+        keep_on_top=True,
+        icon=assets.icons.LOGO()
     )
