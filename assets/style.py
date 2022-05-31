@@ -9,6 +9,10 @@ def BTN_COLOR() -> tuple:
 def BG_COLOR():
     return sg.theme_background_color()
 
+def STATE_COLOR(state):
+    colors = 'yellow', sg.theme_element_text_color()
+    return colors[state]
+
 #  FONTS:  ################
 F_14 = "Default 14"
 F_14_B = "Default 14 bold"

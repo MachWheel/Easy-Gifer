@@ -1,9 +1,40 @@
 import PySimpleGUI as sg
 
-from . import txt, style
+from assets import txt, style, icons
 
 
-def TRIM_TIME_INPUT(mode: str) -> tuple:
+def BROWSE_BTN() -> sg.Button:
+    return sg.Button(
+        button_type=sg.BUTTON_TYPE_BROWSE_FILE,
+        image_data=icons.FOLDER(),
+        button_color=style.BTN_COLOR(),
+        border_width=0,
+        target='-VIDEO_IN-',
+        tooltip=txt.BROWSE_TOOLTIP
+    )
+
+
+def VIDEO_INPUT() -> sg.Input:
+    return sg.Input(
+        k='-VIDEO_IN-',
+        size=(30, 4),
+        expand_x=True,
+        font=style.F_14
+    )
+
+
+def START_BTN() -> sg.Button:
+    return sg.Button(
+        button_type=sg.BUTTON_TYPE_READ_FORM,
+        image_data=icons.START(),
+        button_color=style.BTN_COLOR(),
+        border_width=0,
+        tooltip=txt.START_TOOLTIP,
+        key="-START_BTN-"
+    )
+
+
+def _time_input(mode: str) -> tuple:
     time_input = sg.Input(
         k=f'-{mode.upper()}_IN-',
         size=(3, 4),
@@ -13,7 +44,7 @@ def TRIM_TIME_INPUT(mode: str) -> tuple:
         justification='center',
         disabled_readonly_background_color=style.BG_COLOR(),
     )
-    input_display = sg.T(f'{mode}', font=style.F_9_B)
+    input_display = sg.Text(f'{mode}', font=style.F_9_B)
     return time_input, input_display
 
 
@@ -25,9 +56,9 @@ def TRIM_START_AT() -> tuple:
         key='-TRIM_CHECK-',
         enable_events=True
     )
-    hour = TRIM_TIME_INPUT('hour')
-    minute = TRIM_TIME_INPUT('minute')
-    second = TRIM_TIME_INPUT('second')
+    hour = _time_input('hour')
+    minute = _time_input('minute')
+    second = _time_input('second')
     return check, sg.P(), *hour, sg.P(), *minute, sg.P(), *second
 
 
@@ -50,7 +81,11 @@ def TRIM_DURATION_SLIDER():
 
 
 def SPEED_SLIDER() -> list:
-    display = sg.T(txt.SPEED_DISPLAY, font=style.F_11_B, key='-SPEED_TEXT-')
+    display = sg.Text(
+        txt.SPEED_DISPLAY,
+        font=style.F_11_B,
+        key='-SPEED_TEXT-'
+    )
     slider = sg.Slider(
         range=(0.1, 3),
         default_value=1,
