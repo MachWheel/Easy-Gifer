@@ -12,11 +12,14 @@ from ._form import Form
 
 class Application:
     def __init__(self, window):
-        self.view = window
+        self.view: sg.Window = window
         self.form = Form(window)
 
     def read_events(self):
         event, values = self.view.read(timeout=10)
+
+        if event == "-VIDEO_IN-":
+            self.form.controls_state(values)
 
         if event == "-START_BTN-":
             options = self.read_form()

@@ -1,3 +1,5 @@
+import os
+
 import PySimpleGUI as sg
 
 import assets
@@ -5,17 +7,31 @@ import assets
 
 class Form:
     def __init__(self, view):
-        self._set_duration = assets.cfg.MAX_DURATION
-        self._set_speed = assets.cfg.DFT_SPEED
         self._video_input: sg.Input = view["-VIDEO_IN-"]
+
+        self._controls: sg.Column = view['-CONTROLS_ROW-']
+        self._controls.hide_row()
+
         self._trim_check: sg.Checkbox = view["-TRIM_CHECK-"]
         self._s_hour: sg.Input = view["-HOUR_IN-"]
         self._s_minute: sg.Input = view["-MINUTE_IN-"]
         self._s_second: sg.Input = view["-SECOND_IN-"]
+
+        self._set_duration = assets.cfg.MAX_DURATION
         self._duration_slider: sg.Slider = view["-DURATION_SLIDER-"]
         self._duration_display: sg.Text = view["-DURATION_TXT-"]
+
+        self._set_speed = assets.cfg.DFT_SPEED
         self._speed_slider: sg.Slider = view["-SPEED_SLIDER-"]
         self._speed_display: sg.Text = view['-SPEED_TEXT-']
+
+
+    def controls_state(self, values):
+        file = values['-VIDEO_IN-']
+        if file and os.path.isfile(file):
+            self._controls.unhide_row()
+        else:
+            self._controls.hide_row()
 
     @property
     def data(self):

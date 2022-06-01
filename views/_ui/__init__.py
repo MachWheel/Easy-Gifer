@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 
 from . import controls
 import assets
+from .controls import INFO_BTN
 
 
 def HEADING() -> sg.Text:
@@ -20,14 +21,29 @@ def VIDEO_BROWSER() -> tuple:
         controls.START_BTN()
     )
 
+##################################################################################
+
+def CONTROLS_ROW():
+    layout = [
+        [TRIM_FRAME()],
+        [SPEED_FRAME(), INFO_BTN()]
+    ]
+    return sg.Column(
+        layout=layout,
+        key='-CONTROLS_ROW-',
+        size=(450, None),
+        element_justification='center',
+        vertical_alignment='center'
+    )
+
 
 def TRIM_FRAME() -> sg.Frame:
     sep = sg.HSep(pad=(5, 15), color=assets.style.BG_COLOR())
     layout = [
         [sg.VPush()],
-        [*controls.TRIM_START_AT(), sg.Push()],
+        [*controls.START_TIME_INPUTS(), sg.Push()],
         [sep],
-        [*controls.TRIM_DURATION_SLIDER()],
+        [*controls.DURATION_SLIDER()],
         [sg.VPush()],
     ]
     return sg.Frame(
@@ -37,7 +53,8 @@ def TRIM_FRAME() -> sg.Frame:
         relief=sg.RELIEF_RAISED,
         expand_x=True,
         element_justification='left',
-        font=assets.style.F_11_B
+        font=assets.style.F_11_B,
+        size=(430, 130)
     )
 
 
@@ -49,18 +66,13 @@ def SPEED_FRAME() -> sg.Frame:
         expand_y=True,
         font=assets.style.F_11_B,
         relief=sg.RELIEF_RAISED,
-        vertical_alignment='top'
+        vertical_alignment='top',
+        size=(375, 65),
+        p=(5, 5)
     )
 
 
-def INFO() -> sg.Button:
-    return sg.Button(
-        image_data=assets.icons.INFO(),
-        button_color=assets.style.BTN_COLOR(),
-        border_width=0,
-        key="-INFO_BTN-",
-        enable_events=True
-    )
+##################################################################################
 
 def PROGRESS_BAR(bar_end: int):
     return [

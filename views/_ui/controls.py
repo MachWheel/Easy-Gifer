@@ -1,6 +1,17 @@
 import PySimpleGUI as sg
 
+import assets
 from assets import txt, style, icons
+
+
+def VIDEO_INPUT() -> sg.Input:
+    return sg.Input(
+        k='-VIDEO_IN-',
+        size=(30, 4),
+        expand_x=True,
+        font=style.F_14,
+        enable_events=True
+    )
 
 
 def BROWSE_BTN() -> sg.Button:
@@ -14,15 +25,6 @@ def BROWSE_BTN() -> sg.Button:
     )
 
 
-def VIDEO_INPUT() -> sg.Input:
-    return sg.Input(
-        k='-VIDEO_IN-',
-        size=(30, 4),
-        expand_x=True,
-        font=style.F_14
-    )
-
-
 def START_BTN() -> sg.Button:
     return sg.Button(
         button_type=sg.BUTTON_TYPE_READ_FORM,
@@ -31,6 +33,17 @@ def START_BTN() -> sg.Button:
         border_width=0,
         tooltip=txt.START_TOOLTIP,
         key="-START_BTN-"
+    )
+
+
+def INFO_BTN() -> sg.Button:
+    return sg.Button(
+        image_data=assets.icons.INFO(),
+        button_color=assets.style.BTN_COLOR(),
+        border_width=0,
+        key="-INFO_BTN-",
+        enable_events=True,
+        p=(5, 5)
     )
 
 
@@ -48,7 +61,7 @@ def _time_input(mode: str) -> tuple:
     return time_input, input_display
 
 
-def TRIM_START_AT() -> tuple:
+def START_TIME_INPUTS() -> tuple:
     check = sg.Checkbox(
         text=txt.START_AT,
         font=style.F_11_B,
@@ -62,7 +75,7 @@ def TRIM_START_AT() -> tuple:
     return check, sg.P(), *hour, sg.P(), *minute, sg.P(), *second
 
 
-def TRIM_DURATION_SLIDER():
+def DURATION_SLIDER():
     return (
         sg.T(txt.DURATION, font=style.F_11_B),
         sg.Slider(

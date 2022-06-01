@@ -10,8 +10,7 @@ def MAIN_WINDOW():
         [
             [_ui.HEADING()],
             [*_ui.VIDEO_BROWSER()],
-            [_ui.TRIM_FRAME()],
-            [_ui.SPEED_FRAME(), _ui.INFO()]
+            [_ui.CONTROLS_ROW()]
         ], finalize=True, icon=assets.icons.LOGO()
     )
 
