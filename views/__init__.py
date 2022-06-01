@@ -20,7 +20,8 @@ def PROGRESS_POPUP(bar_end=200):
         title=assets.txt.EXPORTING,
         layout=_ui.PROGRESS_BAR(bar_end),
         keep_on_top=True,
-        icon=assets.icons.LOGO()
+        icon=assets.icons.LOGO(),
+        no_titlebar=True,
     )
 
 
