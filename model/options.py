@@ -2,6 +2,7 @@ import os
 
 import assets
 
+
 class Options:
     def __init__(self, form: dict):
         self.input_path = _parse_file(form)

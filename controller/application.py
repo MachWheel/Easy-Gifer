@@ -1,13 +1,13 @@
-import webbrowser
 import os
+import webbrowser
 
 import PySimpleGUI as sg
 
+import assets
 import model
 import views
-import assets
-from ._gifer import Gifer
 from ._form import Form
+from ._gifer import Gifer
 
 
 class Application:

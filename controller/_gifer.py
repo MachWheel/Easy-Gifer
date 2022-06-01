@@ -2,9 +2,9 @@ from concurrent.futures import ThreadPoolExecutor, Future
 
 import ffmpeg
 
-import views
-import model
 import assets
+import model
+import views
 
 
 class Gifer:

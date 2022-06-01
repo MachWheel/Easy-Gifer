@@ -1,8 +1,7 @@
 import PySimpleGUI as sg
 
-from . import controls
 import assets
-from .controls import INFO_BTN
+from . import controls
 
 
 def HEADING() -> sg.Text:
@@ -26,7 +25,7 @@ def VIDEO_BROWSER() -> tuple:
 def CONTROLS_ROW():
     layout = [
         [TRIM_FRAME()],
-        [SPEED_FRAME(), INFO_BTN()]
+        [SPEED_FRAME(), controls.INFO_BTN()]
     ]
     return sg.Column(
         layout=layout,

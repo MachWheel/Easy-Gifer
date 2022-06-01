@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 
-from . import _ui
 import assets
+from . import _ui
 
 
 def MAIN_WINDOW():
