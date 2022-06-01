@@ -6,8 +6,8 @@ import PySimpleGUI as sg
 import model
 import views
 import assets
-from .gifer import Gifer
-from .form import Form
+from ._gifer import Gifer
+from ._form import Form
 
 
 class Application:
