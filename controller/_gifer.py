@@ -8,40 +8,46 @@ import assets
 
 
 class Gifer:
-    @staticmethod
-    def run(options: model.Options) -> str:
+    def __init__(self, options: model.Options):
+        self.options = options
+
+    def run(self) -> str:
         with ThreadPoolExecutor() as e:
-            task = e.submit(Gifer._convert, options)
-            SHOW_TASK_PROGRESS(task)
+            task = e.submit(self._convert)
+            _show_progress(task)
             output = task.result()
         return output
 
-    @staticmethod
-    def _convert(options: model.Options):
-        output_file = options.output_path
-        stream = ffmpeg.input(options.input_path)
-        if options.duration != '00:00:00':
-            trim_args = options.start_time, options.duration
-            stream = Gifer._trim(trim_args, stream)
-        stream = Gifer._set_speed(options.gif_speed, stream)
-        Gifer._make_file(output_file, stream)
+    @property
+    def _trim_set(self) -> bool:
+        return self.options.duration != '00:00:00'
+
+    @property
+    def _stream_input(self):
+        return ffmpeg.input(self.options.input_path)
+
+    def _convert(self):
+        args = self.options
+        output_file = args.output_path
+        stream = self._stream_input
+        if self._trim_set:
+            stream = _trim(args, stream)
+        stream = _set_speed(args.gif_speed, stream)
+        _make_file(output_file, stream)
         return output_file
 
-    @staticmethod
-    def _trim(options, stream):
-        return stream.trim(start=options[0], duration=options[1])
 
-    @staticmethod
-    def _set_speed(gif_speed, stream):
-        return stream.filter('setpts', f'(PTS-STARTPTS)*{gif_speed}')
+def _trim(options: model.Options, stream):
+    return stream.trim(start=options.start_time, duration=options.duration)
 
-    @staticmethod
-    def _make_file(output_file, stream):
-        stream = ffmpeg.output(stream, output_file)
-        ffmpeg.run(stream, overwrite_output=True, quiet=True)
+def _set_speed(gif_speed, stream):
+    return stream.filter('setpts', f'(PTS-STARTPTS)*{gif_speed}')
 
+def _make_file(output_file, stream):
+    stream = ffmpeg.output(stream, output_file)
+    ffmpeg.run(stream, overwrite_output=True, quiet=True)
 
-def SHOW_TASK_PROGRESS(task: Future[str]):
+def _show_progress(task: Future[str]):
     bar_end, reload_i, i = 100, 99, 0
     view = views.PROGRESS_POPUP(bar_end=bar_end)
     while task.running():

@@ -15,7 +15,6 @@ class Application:
         self.view = window
         self.form = Form(window)
 
-
     def read_events(self):
         event, values = self.view.read(timeout=10)
 
@@ -50,7 +49,8 @@ class Application:
 
     def run_gifer(self, options):
         self.view.hide()
-        output = Gifer.run(options)
+        gifer = Gifer(options)
+        output = gifer.run()
         if views.DONE_POPUP():
             os.startfile(os.path.realpath(output))
         self.view.un_hide()
