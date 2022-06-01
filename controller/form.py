@@ -19,12 +19,12 @@ class Form:
 
     @property
     def data(self):
-        hour: str = self._s_hour.get()
-        minute: str = self._s_minute.get()
-        sec: str = self._s_second.get()
+        hh: str = self._s_hour.get()
+        mm: str = self._s_minute.get()
+        ss: str = self._s_second.get()
         return {
             'input_path': self._video_input.get(),
-            'start': (hour, minute, sec),
+            'start': (hh, mm, ss),
             'duration': self._set_duration,
             'gif_speed': self._set_speed
         }

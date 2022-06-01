@@ -16,20 +16,10 @@ def MAIN_WINDOW():
     )
 
 
-def PROGRESS_POPUP(bar_end=100):
-    layout = [
-        [sg.T(assets.txt.EXPORTING, key='-TXT-', font='Default 12 bold')],
-        [sg.ProgressBar(
-            bar_end,
-            orientation='h',
-            size=(50, 20),
-            key='-PROG-',
-            bar_color='#ff009b'
-        )]
-    ]
+def PROGRESS_POPUP(bar_end=200):
     return sg.Window(
         title=assets.txt.EXPORTING,
-        layout=layout,
+        layout=_ui.PROGRESS_BAR(bar_end),
         keep_on_top=True,
         icon=assets.icons.LOGO()
     )
