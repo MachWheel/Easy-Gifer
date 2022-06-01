@@ -24,13 +24,13 @@ def VIDEO_BROWSER() -> tuple:
 
 def CONTROLS_ROW():
     layout = [
-        [TRIM_FRAME()],
-        [SPEED_FRAME(), controls.INFO_BTN()]
+        [TRIM_FRAME(), sg.Push()],
+        [SPEED_FRAME(), sg.Push(), controls.INFO_BTN()]
     ]
     return sg.Column(
         layout=layout,
         key='-CONTROLS_ROW-',
-        size=(450, None),
+        size=(450, 245),
         element_justification='center',
         vertical_alignment='center'
     )
@@ -50,10 +50,9 @@ def TRIM_FRAME() -> sg.Frame:
         layout=layout,
         pad=(0, 15),
         relief=sg.RELIEF_RAISED,
-        expand_x=True,
         element_justification='left',
         font=assets.style.F_11_B,
-        size=(430, 130)
+        size=(445, 130)
     )
 
 
@@ -61,13 +60,11 @@ def SPEED_FRAME() -> sg.Frame:
     return sg.Frame(
         title='Change speed?',
         layout=[controls.SPEED_SLIDER()],
-        expand_x=True,
-        expand_y=True,
         font=assets.style.F_11_B,
         relief=sg.RELIEF_RAISED,
         vertical_alignment='top',
-        size=(375, 65),
-        p=(5, 5)
+        size=(390, 65),
+        p=(0, 5)
     )
 
 

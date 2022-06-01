@@ -43,7 +43,6 @@ def INFO_BTN() -> sg.Button:
         border_width=0,
         key="-INFO_BTN-",
         enable_events=True,
-        p=(5, 5)
     )
 
 
