@@ -14,7 +14,7 @@ ECHO:
 PAUSE
 MKDIR dist
 ROBOCOPY ".." "dist" ffmpeg.exe /mt /z
-pyinstaller -w --onefile ..\main.py --hiddenimport ffmpeg-python --icon app.ico --name Easy-Gifer
+pyinstaller -w --onefile ..\main.py --hiddenimport ffmpeg-python --icon app.ico --name Easy-Gifer --splash splashfile.jpg
 ECHO:
 ECHO DONE! PRESS ANY KEY TO OPEN THE OUTPUT FOLDER.
 ECHO:
